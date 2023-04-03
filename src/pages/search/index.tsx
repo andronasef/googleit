@@ -1,24 +1,13 @@
 import { useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
 import ResultsSearchBox from '../../components/results_searchbox';
 import SearchResults from '../../components/searchresults';
 import { getSearchResults } from '../../utils/api';
 
-export async function loader({ request }: { request: any }) {
-  const url = new URL(request.url);
-  const q = url.searchParams.get('q');
-  if (!q) {
-    throw new Error('No search query provided');
-  }
-  return { q };
-}
-
 function Search() {
-  const { q } = useLoaderData();
   const [searchResults, setSearchResults] = useState({});
 
   useEffect(() => {
-    (async () => setSearchResults(await getSearchResults(q)))();
+    (async () => setSearchResults(await getSearchResults(location.search)))();
   }, []);
 
   return (

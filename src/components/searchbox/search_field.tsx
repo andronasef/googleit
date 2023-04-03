@@ -3,19 +3,20 @@ import IcRoundClose from '~icons/ic/round-close';
 import MaterialSymbolsSearchRounded from '~icons/material-symbols/search-rounded';
 import SearchStatus from './status_enum';
 function SearchField({
-  query,
+  query = null,
   setQuery,
   setStatus,
   isQueryValid,
   status,
 }: {
-  query: string;
+  query: any;
   setQuery: (query: string) => void;
   setStatus: (status: SearchStatus) => void;
   isQueryValid: boolean;
   status: SearchStatus;
 }) {
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const queryPram = new URLSearchParams(location.search).get('q') || '';
 
   const handleQueryChange = async (e: any) => {
     setQuery(e.target.value);
@@ -53,7 +54,7 @@ function SearchField({
                   : ''
               }`}
           autoComplete="off"
-          value={query}
+          value={query == null ? queryPram : query}
           onChange={handleQueryChange}
         />
         <button
