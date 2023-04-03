@@ -4,12 +4,12 @@ import Search from './pages/search';
 
 const router = createBrowserRouter([
   {
-    index: true,
+    path: '/googleit',
     element: <Homepage />,
     errorElement: <div>Something went wrong</div>,
   },
   {
-    path: '/search',
+    path: '/googleit/search',
     element: <Search />,
   },
 ]);

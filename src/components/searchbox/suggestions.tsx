@@ -22,7 +22,7 @@ function SearchSuggetions({
               const [key, suggestion] = suggestionObj;
               return (
                 <a
-                  href={`/search?q=${suggestion}`}
+                  href={`/googleit/search?q=${suggestion}`}
                   className="flex items-center px-3 py-1 font-semibold hover:bg-[#F8F9FA]"
                   key={key}
                 >

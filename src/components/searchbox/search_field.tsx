@@ -27,7 +27,7 @@ function SearchField({
   };
 
   function handleSearch(query: string) {
-    location.assign(`/search?q=${query}`);
+    location.assign(`/googleit/search?q=${query}`);
   }
 
   function handleKeyboardKeys(e: any) {
