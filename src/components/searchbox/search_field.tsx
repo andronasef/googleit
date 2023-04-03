@@ -1,7 +1,9 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import IcRoundClose from '~icons/ic/round-close';
 import MaterialSymbolsSearchRounded from '~icons/material-symbols/search-rounded';
+import { getHashQuery } from '../../utils/hash_router_helpers';
 import SearchStatus from './status_enum';
+
 function SearchField({
   query = null,
   setQuery,
@@ -16,7 +18,6 @@ function SearchField({
   status: SearchStatus;
 }) {
   const searchInputRef = useRef<HTMLInputElement>(null);
-  const queryPram = new URLSearchParams(location.search).get('q') || '';
 
   const handleQueryChange = async (e: any) => {
     setQuery(e.target.value);
@@ -28,16 +29,26 @@ function SearchField({
 
   function handleSearch(query: string) {
     location.assign(`/googleit/#/search?q=${query}`);
+    if (searchInputRef.current) searchInputRef.current.blur();
   }
 
   function handleKeyboardKeys(e: any) {
     if (e.key === 'Enter') {
       handleSearch(query);
+      if (location.href.includes('search')) location.reload();
+      setStatus(SearchStatus.idle);
     } else if (e.key === 'Escape') {
       setStatus(SearchStatus.idle);
       searchInputRef.current?.blur();
     }
   }
+
+  useEffect(() => {
+    // @ts-ignore
+    const q = decodeURIComponent(getHashQuery());
+    if (searchInputRef.current && q != 'undefined')
+      searchInputRef.current.value = q;
+  }, []);
 
   return (
     <>
@@ -54,7 +65,7 @@ function SearchField({
                   : ''
               }`}
           autoComplete="off"
-          value={query == null ? queryPram : query}
+          value={query}
           onChange={handleQueryChange}
         />
         <button

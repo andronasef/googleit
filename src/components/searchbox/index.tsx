@@ -52,6 +52,7 @@ function SearchBox() {
           isQueryValid={isQueryValid}
           status={status}
           suggestionsResults={suggestionsResults}
+          setStatus={setStatus}
         />
       </div>
     </>

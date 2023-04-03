@@ -5,10 +5,12 @@ function SearchSuggetions({
   status,
   suggestionsResults,
   isQueryValid,
+  setStatus,
 }: {
   status: SearchStatus;
   suggestionsResults: Record<string, string>;
   isQueryValid: boolean;
+  setStatus: (status: SearchStatus) => void;
 }) {
   return (
     <div
@@ -23,10 +25,9 @@ function SearchSuggetions({
               return (
                 <a
                   onClick={() => {
-                    location.assign(`/googleit/#/search?q=${suggestion}`);
+                    location.replace(`/googleit/#/search?q=${suggestion}`);
                     // Because the search page is not reloaded when the user clicks on a suggestion because of the router ):
-                    if (window.location.href.includes('search'))
-                      location.reload();
+                    if (location.href.includes('search')) location.reload();
                   }}
                   className="flex cursor-pointer items-center px-3 py-1 font-semibold hover:bg-[#F8F9FA]"
                   key={key}

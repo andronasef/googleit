@@ -1,5 +1,5 @@
 function GoogleLogo({ size = 200 }) {
-  const isNotHomepage = !(window.location.pathname === '/');
+  const isNotHomepage = !(window.location.pathname === '/googleit');
   const googleImg = (
     <img
       className="h-full"
