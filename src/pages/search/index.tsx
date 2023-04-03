@@ -1,10 +1,8 @@
-import { useEffect } from 'react';
-import { useLoaderData, useNavigation } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLoaderData } from 'react-router-dom';
+import ResultsSearchBox from '../../components/results_searchbox';
+import SearchResults from '../../components/searchresults';
 import { getSearchResults } from '../../utils/api';
-import {
-  getDomainNamefromUrl,
-  getFaviconFromUrl,
-} from '../../utils/results_helpers';
 
 export async function loader({ request }: { request: any }) {
   const url = new URL(request.url);
@@ -12,44 +10,22 @@ export async function loader({ request }: { request: any }) {
   if (!q) {
     throw new Error('No search query provided');
   }
-  const searchResults = await getSearchResults(q);
-  return { searchResults };
+  return { q };
 }
 
 function Search() {
-  const { searchResults } = useLoaderData();
-  const navigation = useNavigation();
-
-  const isLoading = navigation.state === 'loading';
+  const { q } = useLoaderData();
+  const [searchResults, setSearchResults] = useState({});
 
   useEffect(() => {
-    console.log(searchResults);
+    (async () => setSearchResults(await getSearchResults(q)))();
   }, []);
 
   return (
-    <>
-      {isLoading && <p>Loading...</p>}
-      <h1>Search Results</h1>
-      <ul>
-        {Object.entries(searchResults).map((result) => {
-          const id = result[0];
-          const { title, description, url } = result[1];
-
-          const img = getFaviconFromUrl(url);
-          const domainName = getDomainNamefromUrl(url);
-          return (
-            <li key={id}>
-              <img src={img} alt="" />
-              {domainName}
-              <a className="text-blue-400" href={url}>
-                {title}
-              </a>
-              <p>{description}</p>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+    <div className="flex flex-col items-center justify-center px-4 py-5 md:p-8 md:max-w-xl lg:max-w-2xl">
+      <ResultsSearchBox />
+      <SearchResults results={searchResults} />
+    </div>
   );
 }
 

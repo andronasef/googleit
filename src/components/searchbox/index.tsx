@@ -4,12 +4,14 @@ import SearchField from './search_field';
 import SearchStatus from './status_enum';
 import SearchSuggetions from './suggestions';
 
-function SeachBox() {
+function SearchBox() {
   const [query, setQuery] = useState('');
   const [suggestionsResults, setSuggestionsResults] = useState({});
   const [status, setStatus] = useState(SearchStatus.idle); // idle, loading, success, error
 
   const isQueryValid = query.trimStart().length > 0;
+
+  const isSearchpage = window.location.href.includes('search');
 
   useEffect(() => {
     if (isQueryValid) {
@@ -35,7 +37,9 @@ function SeachBox() {
       <div
         className={`${
           isQueryValid ? 'shadow-xl rounded-b-[1.25rem]' : 'rounded-full'
-        } relative w-[90%] md:max-w-[450px] hover:shadow-xl focus-visible:shadow-xl `}
+        } ${
+          isSearchpage ? 'shadow-xl' : ''
+        } relative w-[90%]  md:max-w-lg hover:shadow-xl focus-visible:shadow-xl`}
       >
         <SearchField
           isQueryValid={isQueryValid}
@@ -53,4 +57,4 @@ function SeachBox() {
   );
 }
 
-export default SeachBox;
+export default SearchBox;

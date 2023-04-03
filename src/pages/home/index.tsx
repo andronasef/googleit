@@ -1,15 +1,12 @@
-import SeachBox from '../../components/searchbox';
+import GoogleLogo from '../../components/google_logo';
+import SearchBox from '../../components/searchbox';
 
 function Homepage() {
   return (
     <>
-      <div className="flex flex-col justify-start items-center pb-10 gap-5 w-full mt-16">
-        <img
-          src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png"
-          alt=""
-          width="200"
-        />
-        <SeachBox />
+      <div className="flex flex-col items-center justify-start w-full gap-5 pb-10 mt-16">
+        <GoogleLogo size={200} />
+        <SearchBox />
       </div>
     </>
   );

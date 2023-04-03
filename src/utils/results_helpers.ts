@@ -11,8 +11,18 @@ function getDomainNamefromUrl(url: string) {
 
 function getFaviconFromUrl(url: string) {
     const domain = getDomainOfUrl(url)
-    return `https://www.google.com/s2/favicons?domain=${domain}`
+    return `https://www.google.com/s2/favicons?domain=${domain}&sz=128`
 }
 
-export { getDomainOfUrl, getDomainNamefromUrl, getFaviconFromUrl }
+function getTitleCase(str: string) {
+    return str
+        .toLowerCase()
+        .split(' ')
+        .map(function (word) {
+            return word.replace(word[0], word[0].toUpperCase())
+        })
+        .join(' ')
+}
+
+export { getDomainOfUrl, getDomainNamefromUrl, getFaviconFromUrl, getTitleCase }
 
