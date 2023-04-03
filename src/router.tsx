@@ -1,15 +1,15 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createHashRouter } from 'react-router-dom';
 import Homepage from './pages/home';
 import Search from './pages/search';
 
-const router = createBrowserRouter([
+const router = createHashRouter([
   {
-    path: '/googleit',
+    path: '/',
     element: <Homepage />,
     errorElement: <div>Something went wrong</div>,
   },
   {
-    path: '/googleit/search',
+    path: '/search',
     element: <Search />,
   },
 ]);

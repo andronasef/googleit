@@ -22,12 +22,17 @@ function SearchSuggetions({
               const [key, suggestion] = suggestionObj;
               return (
                 <a
-                  href={`/googleit/search?q=${suggestion}`}
-                  className="flex items-center px-3 py-1 font-semibold hover:bg-[#F8F9FA]"
+                  onClick={() => {
+                    location.assign(`/googleit/#/search?q=${suggestion}`);
+                    // Because the search page is not reloaded when the user clicks on a suggestion because of the router ):
+                    if (window.location.href.includes('search'))
+                      location.reload();
+                  }}
+                  className="flex cursor-pointer items-center px-3 py-1 font-semibold hover:bg-[#F8F9FA]"
                   key={key}
                 >
                   <MaterialSymbolsSearchRounded className="ml-1 mr-3 text-[#9AA0A6]" />
-                  <span> {suggestion}</span>
+                  <span className="select-none"> {suggestion}</span>
                 </a>
               );
             })}
