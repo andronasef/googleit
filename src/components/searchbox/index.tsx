@@ -38,11 +38,12 @@ function SearchBox() {
         className={`${
           isQueryValid ? 'shadow-xl rounded-b-[1.25rem]' : 'rounded-full'
         } ${
-          isSearchpage ? 'shadow-xl' : ''
-        } relative w-[90%]  md:max-w-lg hover:shadow-xl focus-visible:shadow-xl`}
+          isSearchpage ? 'shadow-lg' : ''
+        } relative w-[90%]  md:max-w-lg hover:shadow-lg focus-visible:shadow-lg`}
       >
         <SearchField
           isQueryValid={isQueryValid}
+          status={status}
           query={query}
           setQuery={setQuery}
           setStatus={setStatus}

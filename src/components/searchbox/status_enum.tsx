@@ -1,6 +1,6 @@
 enum SearchStatus {
   idle = 'idle',
-  loading = 'loading',
+  loading = 'loading', // loading suggetions from server
   success = 'success',
   error = 'error',
 }
