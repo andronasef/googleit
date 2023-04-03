@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: "/googleit",
   plugins: [
     react(),
     Icons({ compiler: 'jsx', jsx: 'react', autoInstall: true }),
