@@ -7,7 +7,10 @@ function Search() {
   const [searchResults, setSearchResults] = useState({});
 
   useEffect(() => {
-    (async () => setSearchResults(await getSearchResults(location.search)))();
+    const query = new URLSearchParams(location.search).get('q');
+    if (!query) return;
+    document.title = `Search results for "${query}"`;
+    (async () => setSearchResults(await getSearchResults(query)))();
   }, []);
 
   return (
