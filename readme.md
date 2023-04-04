@@ -1,4 +1,4 @@
-[![Google Search Clone](screens\screen0.png)](https://andronasef.github.io/googleit)
+[![Google Search Clone](./screens/screen0.png)](https://andronasef.github.io/googleit)
 
 [![Made with React](https://img.shields.io/badge/Made%20with-React-blue?logo=react)](https://reactjs.org/) [![Powered by React Router](https://img.shields.io/badge/Powered%20by-React%20Router-blueviolet?logo=react-router)](https://reactrouter.com/) [![Styled with TailwindCSS](https://img.shields.io/badge/Styled%20with-TailwindCSS-green?logo=tailwind-css)](https://tailwindcss.com/)
 
