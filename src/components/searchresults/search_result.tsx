@@ -6,6 +6,12 @@ import {
 
 function SearchResult({ resultData }: { resultData: any }) {
   const { title, description, url } = resultData;
+  const decodedTitle = decodeURIComponent(title)
+    ? decodeURIComponent(title)
+    : title;
+  const decodeDescription = decodeURIComponent(description)
+    ? decodeURIComponent(description)
+    : description;
 
   const img = getFaviconFromUrl(url);
   const domainName = getDomainNamefromUrl(url);
@@ -31,9 +37,9 @@ function SearchResult({ resultData }: { resultData: any }) {
         className="font-medium text-[#1a0dab] max-w-fit hover:underline"
         href={url}
       >
-        {title}
+        {decodedTitle}
       </a>
-      <p>{description}</p>
+      <p>{decodeDescription}</p>
     </li>
   );
 }
