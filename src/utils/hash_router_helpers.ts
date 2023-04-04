@@ -3,7 +3,7 @@ function getHashQuery() {
     if (url.includes("?")) {
         const query =
             url.split("?")[1].split("=")[1]
-        return query
+        return decodeURIComponent(query)
 
 
     }
