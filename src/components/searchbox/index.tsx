@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getSuggetions } from '../../utils/api';
+import { getHashQuery } from '../../utils/hash_router_helpers';
 import SearchField from './search_field';
 import SearchStatus from './status_enum';
 import SearchSuggetions from './suggestions';
 
 function SearchBox() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState(decodeURIComponent(getHashQuery() || ''));
   const [suggestionsResults, setSuggestionsResults] = useState({});
   const [status, setStatus] = useState(SearchStatus.idle); // idle, loading, success, error
 
@@ -14,6 +15,7 @@ function SearchBox() {
   const isSearchpage = window.location.href.includes('search');
 
   useEffect(() => {
+    if (query == decodeURIComponent(getHashQuery() as string)) return;
     if (isQueryValid) {
       setStatus(SearchStatus.loading);
 

@@ -1,7 +1,6 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import IcRoundClose from '~icons/ic/round-close';
 import MaterialSymbolsSearchRounded from '~icons/material-symbols/search-rounded';
-import { getHashQuery } from '../../utils/hash_router_helpers';
 import SearchStatus from './status_enum';
 
 function SearchField({
@@ -43,13 +42,6 @@ function SearchField({
     }
   }
 
-  useEffect(() => {
-    // @ts-ignore
-    const q = decodeURIComponent(getHashQuery());
-    if (searchInputRef.current && q != 'undefined')
-      searchInputRef.current.value = q;
-  }, []);
-
   return (
     <>
       <div className="relative">
@@ -64,7 +56,7 @@ function SearchField({
                   ? 'rounded-b-none rounded-t-[1.25rem]'
                   : ''
               }`}
-          autoComplete="off"
+          autoComplete="false"
           value={query}
           onChange={handleQueryChange}
         />
