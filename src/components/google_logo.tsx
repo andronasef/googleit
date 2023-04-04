@@ -17,7 +17,7 @@ function GoogleLogo({ size = 200 }) {
       }}
     >
       {isNotHomepage ? (
-        <a href={isNotHomepage ? '/' : ''}>{googleImg}</a>
+        <a href={isNotHomepage ? '/googleit' : ''}>{googleImg}</a>
       ) : (
         <>{googleImg}</>
       )}
